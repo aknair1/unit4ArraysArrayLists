@@ -17,7 +17,7 @@ public class RadarTest
     public void test1()
     {
         Radar radar = new Radar(100,100);
-        radar.setNoiseFraction(0.005);
+        radar.setNoiseFraction(0.01);
         radar.setMonsterStats(1,1,0,0);
         radar.setup();
         while(radar.scan());
@@ -30,38 +30,38 @@ public class RadarTest
     public void test2()
     {
         Radar radar = new Radar(100,100);
-        radar.setNoiseFraction(0.005);
-        radar.setMonsterStats(1,-1,10,98);
+        radar.setNoiseFraction(0.01);
+        radar.setMonsterStats(1,-2,20,98);
         radar.setup();
         while(radar.scan());
         assertEquals(1,radar.getGeussDRow());
-        assertEquals(-1,radar.getGeussDCol());
-        assertEquals(10,radar.getGeussRow());
+        assertEquals(-2,radar.getGeussDCol());
+        assertEquals(20,radar.getGeussRow());
         assertEquals(98,radar.getGeussCol());
     }
     @Test
     public void test3()
     {
         Radar radar = new Radar(100,100);
-        radar.setNoiseFraction(0.005);
-        radar.setMonsterStats(-1,1,89,3);
+        radar.setNoiseFraction(0.01);
+        radar.setMonsterStats(-1,2,67,3);
         radar.setup();
         while(radar.scan());
         assertEquals(-1,radar.getGeussDRow());
-        assertEquals(1,radar.getGeussDCol());
-        assertEquals(89,radar.getGeussRow());
+        assertEquals(2,radar.getGeussDCol());
+        assertEquals(67,radar.getGeussRow());
         assertEquals(3,radar.getGeussCol());
     }
     @Test
     public void test4()
     {
         Radar radar = new Radar(100,100);
-        radar.setNoiseFraction(0.005);
-        radar.setMonsterStats(-1,-1,99,99);
+        radar.setNoiseFraction(0.01);
+        radar.setMonsterStats(-2,-2,99,99);
         radar.setup();
         while(radar.scan());
-        assertEquals(-1,radar.getGeussDRow());
-        assertEquals(-1,radar.getGeussDCol());
+        assertEquals(-2,radar.getGeussDRow());
+        assertEquals(-2,radar.getGeussDCol());
         assertEquals(99,radar.getGeussRow());
         assertEquals(99,radar.getGeussCol());
     }

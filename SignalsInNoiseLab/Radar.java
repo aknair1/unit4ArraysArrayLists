@@ -25,8 +25,7 @@ public class Radar
     private int numScans;
     // max speed threshold
     private final int MAXSPEEDTHRESHOLD = 5;
-    //
-    private final int CHECKSPEEDTHRESHOLD = 10;
+    private final int CHECKSPEEDTHRESHOLD = 15;
     // monster speeds(x per frame, y per frame)
     private int dRow;
     private int dCol;
@@ -146,8 +145,7 @@ public class Radar
      * @return returns true if one speed has been used at least CHEKSPEEDTHRESHOLD times more than the others
      */
     public boolean checkForHighestSpeed()
-    {    
-        // finds the speed that was used the most
+    {     
         int highest = 0;  
         for(int row = 0; row < accumulator.length; row++)
         {
@@ -161,7 +159,7 @@ public class Radar
                 }                
             }
         }
-        int check = 0;
+        int check = highest - CHECKSPEEDTHRESHOLD;
         for(int row = 0; row < accumulator.length; row++)
         {
             for(int col = 0; col < accumulator[0].length; col++)
@@ -172,7 +170,6 @@ public class Radar
                 }                
             }
         }
-        // checks to see if the most used speed is used at least CHECKSPEEDTHRESHOLD more times than the others
         return check + CHECKSPEEDTHRESHOLD == highest;
     }
 
@@ -182,7 +179,8 @@ public class Radar
     public void finish()
     {
         scans[numScans][monsterLocationRow][monsterLocationCol] = true;
-        injectNoise();        
+        injectNoise();
+        
         for(int row = 0; row < scans.length; row++)
         {
             for(int col = 0; col < scans.length; col++)
